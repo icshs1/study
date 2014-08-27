@@ -1,3 +1,6 @@
+## 문서 사이트
+http://www.dbguide.net/knowledge.db?cmd=interview_view&boardUid=173763&boardConfigUid=84&boardStep=0&categoryUid=
+
 #########################################################
 ### 실습 2-3 영화사이트에서 감상평 수집하기
 #########################################################
@@ -25,6 +28,11 @@ GetDaumMovieData <- function(num){
   senti_data <-cbind(movie_nm,score,reg_date,contents) #데이터 바인드
   return(senti_data)
 }
+
+
+
+
+
 
 
 #네이트 영화 페이지에서 감상평 내용 수집하는 모듈
@@ -80,3 +88,37 @@ DATA<-rbind(DATA,getData) #데이터 바인드
 #Default working directory에 지정된 폴더에 
 #SAMPLE_MOVIE_DATA.csv 이름으로 생성된다.
 write.csv(DATA,"SAMPLE_MOVIE_DATA.csv")
+
+
+
+##감상평 데이터를 KONLP 패키지의 extractNoun() 함수를 이용해 명사 분리
+##우리는 R의 extractNoun() 함수를 이용해 감상평 데이터에서 명사 분리를 시작하였다. 하지만 출발과 동시에 에러가 ‘터지기’ 시작했다
+
+
+##Warning message:
+  ##In preprocessing(sentence) :
+  ##It's not kind of right sentence : '자연의경고가좀비라는존재로대체된것같네요!'
+
+
+ 
+##우리는 구글에서 열심히 검색해 봤지만, 에러 원인이 무엇인지 명확히 설명해 주는 자료를 찾을 수 없었다.
+## R이 오픈소스라는 점에 착안하여 소스코드를 검색해 보기로 했다. 
+## 역시, 우리는 https://github.com/haven-jeon/KoNLP에 공개된 소스코드에서 
+## 에러 메시지에 나온 preprocessing(sentence) 함수를 확인할 수 있었다. 
+
+# if unable to process, this will return FALSE
+preprocessing <- function(inputs){
+  if(!is.character(inputs)) {
+    warning("Input must be legitimate character!")
+    return(FALSE)
+  }
+  newInput <- gsub("[[:space:]]", " ", inputs)
+  newInput <- gsub("[[:space:]]+$", "", newInput)
+  newInput <- gsub("^[[:space:]]+", "", newInput)
+  if((nchar(newInput) == 0) |  
+          (nchar(newInput) > 20 & length(strsplit(newInput, " ")[[1]]) <= 1)){ 
+    warning(sprintf("It's not kind of right sentence : '%s'", inputs))
+    return(FALSE)
+  }
+  return(newInput)
+}
