@@ -51,6 +51,7 @@ Crawling_MovieData <-function(startpage,endpage) {
   for (i in StartPage:EndPage) {
     getData<-GetDaumMovieData(i)  ##다음 크롤링 
     DATA<-rbind(DATA,getData) #데이터 바인드
+    print(paste("page : ",as.character(i),sep=""))
   }
   #수집된 감상평 데이터를 CSV파일로 저장한다.
   #Default working directory에 지정된 폴더에 
