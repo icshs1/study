@@ -125,4 +125,7 @@ Crawling_MovieData_Proxy <-function(startpage,endpage) {
   filename<-paste("SAMPLE_MOVIE_DATA_DAUM_",as.character(StartPage),"_",as.character(EndPage),".csv",sep="")
   write_filename<-file.path(cdir,directory,filename,fsep="\\")
   write.csv(DATA,write_filename) 
+  
+  ##Error in UseMethod("xmlNamespaceDefinitions") : 
+  ##no applicable method for 'xmlNamespaceDefinitions' applied to an object of class "NULL" 
 }
