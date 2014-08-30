@@ -24,6 +24,7 @@ library(RCurl)
 GetDaumMovieData <- function(num){
   url = gsub(" ","",paste("http://movie.daum.net/review/netizen_point/movieNetizenPoint.do?type=after&page=",num))  
   doc = htmlTreeParse(url, useInternalNodes = T, encoding="UTF-8")
+  ##if (doc==NULL) return(NULL)
   xpathSApply(doc, "//div[@class='commentList']", xmlValue)
   movie_nm <- xpathSApply(doc, "//span[@class='movieTitle fs11']", xmlValue)                              #영화명
   score<-gsub("네티즌별점","",xpathSApply(doc, "//span[@class='star_small']", xmlValue))                  #별점
@@ -47,11 +48,19 @@ Crawling_MovieData <-function(startpage,endpage) {
   #추출하고자 하는 사이트의 함수를 호출해서 데이터를 수집한다.
   cdir<-getwd() ##  current directory
   directory="reviewdata"
-  
+ ## skip_page=0;
+ ## skip_page_num<-NULL;
   for (i in StartPage:EndPage) {
-    getData<-GetDaumMovieData(i)  ##다음 크롤링 
-    DATA<-rbind(DATA,getData) #데이터 바인드
-    print(paste("page : ",as.character(i),sep=""))
+    getData<-GetDaumMovieData(i)  ##다음 크롤링
+  ##  if(getData==NULL) {
+  ##    skip_page_num<-rbind(skip_page_num,as.data.frame(i))
+  ##    skip_page<skip_page+1      
+  ##    print(paste("page : ",as.character(i),"cannot connect or NULL : Skipped",sep=""))
+  ##  }
+  ##  else {
+      DATA<-rbind(DATA,getData) #데이터 바인드
+      print(paste("page : ",as.character(i),sep=""))
+  ##  }
   }
   #수집된 감상평 데이터를 CSV파일로 저장한다.
   #Default working directory에 지정된 폴더에 
@@ -59,6 +68,13 @@ Crawling_MovieData <-function(startpage,endpage) {
   filename<-paste("SAMPLE_MOVIE_DATA_DAUM_",as.character(StartPage),"_",as.character(EndPage),".csv",sep="")
   write_filename<-file.path(cdir,directory,filename,fsep="\\")
   write.csv(DATA,write_filename)
+  
+ ## if(skip_page!=0) {
+##    skip_page
+##    skip_page_num
+##    write_filename<-file.path(cdir,directory,"skip_page.csv",fsep="\\")
+##    write.csv(skip_page_num,write_filename)
+##  }
 }
 
 
