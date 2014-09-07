@@ -1,0 +1,119 @@
+
+RAWDAD Datasets
+ 게시자: KangBok Lee, 2013. 1. 17. 오전 3:36    [  2013. 1. 17. 오전 3:36에 업데이트됨 ] 
+RAWDAD라는 곳에서 제공해주는 다량의 데이터셋입니다.
+많은 자료들이 있으니 한 번 둘러보는 것도 좋을 것 같습니다.
+*관련 사이트 - http://crawdad.cs.dartmouth.edu/data.php 
+
+UCI Machine Learning Repository
+ 게시자: KangBok Lee, 2012. 10. 17. 오후 7:20  
+UCI (University of California, Irvine) 에서 제공해주는 기계학습 관련 데이터셋 모음입니다.
+상당한 양의 자료를 보유하고 있습니다.
+*관련 사이트 - http://archive.ics.uci.edu/ml/datasets.html 
+
+
+
+Google Flu Trends Dataset
+ 게시자: KangBok Lee, 2012. 10. 17. 오후 6:48  
+구글에서 2003년 부터 수집한, 전 세계 28개국의 독감 트랜드 수준을 수치화하여 담은 데이터셋입니다.
+txt 파일 안에 짧막한 이용 약관도 들어있으니 꼭 읽어보시기 바랍니다.
+*관련 사이트 - http://www.google.org/flutrends/
+*직접 다운로드 - http://www.google.org/flutrends/data.txt 
+
+
+
+Epinions dataset
+ 게시자: KangBok Lee, 2012. 7. 31. 오후 11:02    [  2012. 7. 31. 오후 11:03에 업데이트됨 ]  
+오피니언 마이닝(Opinion Mining)에 유용하게 쓰일 수 있는 데이터셋입니다.
+유저의 각 아이템에 대한 점수(rating)도 담고 있습니다. 
+괜찮은 데이터셋입니다.
+*관련 사이트 : http://www.trustlet.org/wiki/Downloaded_Epinions_dataset 
+
+
+
+Baseball DataBank Dataset
+ 게시자: KangBok Lee, 2012. 5. 3. 오전 4:03    [  2012. 5. 3. 오전 4:16에 업데이트됨 ]   
+야구 데이터(미국 메이저리그-MLB로 추정)를 담고 있는 Dataset입니다.
+사이트에 들어가면, 자신들의 데이터셋에 맞게 테이블을 구성하는 sql파일 등이 버전별로 정리되어 있습니다.
+물론 MLB 데이터 그 자체도 들어있습니다.
+ 
+
+현재 '직접 다운로드'로 링크되어 있는 자료는 2011년 자료입니다. 더 많은 자료를 원하신다면,
+
+사이트로 들어가셔서 'Database in Comma-Delimited Form with Table Defs'에 들어가시면 다운로드 가능합니다.
+
+*관련 사이트 : http://www.baseball-databank.org/
+*직접 다운로드 : http://www.baseball-databank.org/files/BDB-csv-2011-03-28.zip 
+
+
+Basketball Reference
+ 게시자: KangBok Lee, 2012. 5. 3. 오전 3:42  
+**실제 Dataset을 제공해주지는 않습니다.
+다만, 미국 프로농구(NBA)에 대한 방대하면서도 자세한 자료를 담고 있는 사이트입니다.
+NBA쪽 자료 원하시는 분들은 이 사이트에서 많은 정보를 얻어가실 수 있을 것 같습니다.
+*관련 사이트 : http://www.basketball-reference.com/ 
+
+
+
+GeoCommons Datasets
+ 게시자: KangBok Lee, 2012. 5. 3. 오전 3:34  
+GeoCommons 사이트에서 제공해주는 Dataset들입니다.
+지도 및 지도에 나타내어질 수 있는 몇몇 Dataset들이 있습니다. 해당 사이트에는 실제 지도 소프트웨어또한 있습니다.
+미국내 월마트의 분포 데이터, 바다 아래를 지나는 광섬유 캐이블 분포 데이터 등이 있습니다.
+*관련 사이트 : http://geocommons.com/search?featured=true&model=Overlay# 
+
+
+
+
+
+
+
+Weka 사이트에서 제공하는 Datasets
+ 게시자: KangBok Lee, 2012. 4. 29. 오전 1:20  
+Weka (데이터 마이닝 툴)의 사이트에서 다양한 데이터셋들을 제공중.
+총 14개의 데이터셋을 제공합니다. (2012.04 기준)
+*관련 사이트 : http://www.cs.waikato.ac.nz/ml/weka/index_datasets.html 
+
+
+CSDMC 2010 Spam Mail Corpus
+ 게시자: KangBok Lee, 2012. 4. 16. 오후 8:01  
+ICONIP(International Conference On Neural Information Processing) 에서 주관하는 데이터 마이닝 대회에서
+2010년도에 사용된 데이터셋.
+4300개를 조금 넘는 Training Dataset과, 4300개에 조금 미치지 못하는 Test Dataset을 포함합니다.
+스팸메일 / 비스팸메일을 포함하는 데이터셋입니다.
+*관련 사이트 - http://csmining.org/index.php/spam-email-datasets-.html
+*직접 다운로드 - http://csmining.org/index.php/spam-email-datasets-.html?file=tl_files/Project_Datasets/task2/CSDMC2010_SPAM.zip 
+
+MovieLens Dataset
+ 게시자: KangBok Lee, 2012. 4. 12. 오후 11:30    [  2012. 4. 29. 오전 1:16에 업데이트됨 ]  
+Group Lens라는 미네소타 대학의 컴퓨터과의 연구실에서 수집한 추천 알고리즘을 위한 영화 데이터.
+선호 정보를 1~5사이의 점수로 나타냅니다. (5에 가까울수록 선호)
+관련 사이트 : http://www.grouplens.org/node/12
+직접 다운로드 :
+1. 100K Dataset : http://www.grouplens.org/system/files/ml-100k.zip
+2. 1M Dataset : http://www.grouplens.org/system/files/ml-1m.zip
+3. 10M Dataset : http://www.grouplens.org/sites/www.grouplens.org/external_files/data/ml-10m.zip 
+
+
+
+Amazon Datasets
+ 게시자: KangBok Lee, 2012. 4. 5. 오전 10:20    [  2012. 4. 12. 오후 11:34에 업데이트됨 ]   
+ Amazon에서 제공해주는 데이터셋들의 모음.
+약 50개의 데이터셋을 다운받을 수 있습니다. (2012년 4월 기준)
+자료가 풍부한 곳입니다.
+* 관련 사이트 : http://aws.amazon.com/datasets 
+
+KDnugget Datasets
+ 게시자: KangBok Lee, 2012. 4. 5. 오전 10:17    [  2012. 4. 12. 오후 11:33에 업데이트됨 ]   
+kdnugget에서 제공해주는 데이터셋 모음.
+데이터셋을 제공해주는 사이트들 약 50개 제공해줍니다. (2012년 4월 기준)
+자료가 풍부한 곳입니다.
+* 관련 사이트 : http://www.kdnuggets.com/datasets/index.html 
+
+The 20 NewsGroups Dataset
+게시자: KangBok Lee, 2012. 4. 5. 오전 4:20    [  2012. 4. 12. 오후 11:32에 업데이트됨 ]   
+거의 20,000개의 문서를 20개의 서로 다른 뉴스 그룹(서로 다른 주제)에 대해 거의 균등하게 모은 데이터셋.
+text classification 테스트 할 때 유용합니다.
+* 관련 사이트 : http://people.csail.mit.edu/jrennie/20Newsgroups/
+* 직접 다운로드 : http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz 
+
