@@ -7,7 +7,7 @@ library(tm)
 #  Factor data transformation
 #  아래화일의 관객수는 공식통계수
 
-movie_data <- read.csv("./moviedata/Movie_Ranking_2014_10_17.txt", sep = "\t",header=TRUE, stringsAsFactors=FALSE)
+movie_data <- read.csv("./moviedata/Movie_Ranking_2014_10_16.txt", sep = "\t",header=TRUE, stringsAsFactors=FALSE)
 ## Title
 movie_data$NewTitle <-removePunctuation(movie_data$Movie_Title) #특수문자 제거
 movie_data$NewTitle <-gsub(" ", "",movie_data$NewTitle)#공백 제거
@@ -86,12 +86,84 @@ total_data$Movie_Category[-which(total_data$Movie_Category=="다양성영화")]<
 
 ## Movie Metadata processing
 #  Director number, Distributor number, Actor, Genre Numer Extraction
-#  Representative director, distributor, Genre, actor 3 extraction 
-#  Function 
+#  Representative director, distributor, Genre, actor 3 extraction
+
+#  Function defines from character string to array number, 3 objects. 
+#  a,b,c,d --> number 4, a,b,c extract
+Extract_name <- function (df_original,name) {
+  temp1<-strsplit(df_original,",") 
+  n_length<-length(temp1)
+  df<-data.frame(Number=rep(1,n_length))
+  for(i in 1:n_length) {
+    df$Number[i]<-length(temp1[[i]])
+    if(df$Number[i]>=3) {
+      df$Name1[i]<-temp1[[i]][1]
+      df$Name2[i]<-temp1[[i]][2]
+      df$Name3[i]<-temp1[[i]][3]
+    }
+    else if(df$Number[i]==2){
+      df$Name1[i]<-temp1[[i]][1]
+      df$Name2[i]<-temp1[[i]][2]
+      df$Name3[i]<-c("")
+    }
+    else if(df$Number[i]==1){
+      df$Name1[i]<-temp1[[i]][1]
+      df$Name2[i]<-c("")
+      df$Name3[i]<-c("")
+    }
+    else {
+      df$Name1[i]<-c("")
+      df$Name2[i]<-c("")
+      df$Name3[i]<-c("")
+    } 
+  } 
+  colnames(df)<-c(paste(name,"_Name",sep=""),paste(name,"1",sep=""),paste(name,"3",sep=""),paste(name,"3",sep=""))
+  return(df)
+}
+
+##Metadata 엑셀화일 날짜 수정 필요함. 포맷이 이상함
 metadata <- read.csv("./moviedata/Movie_Metadata_2014_09_30.txt", sep = "\t",header=TRUE, stringsAsFactors=FALSE)
+## Title
+metadata$NewTitle <-removePunctuation(metadata$Movie_Title) #특수문자 제거
+metadata$NewTitle <-gsub(" ", "",metadata$NewTitle)#공백 제거
+## Realase Date
+metadata$Release_Date <-as.POSIXlt(metadata$Release_Date)
 
-write.csv (total_data, "./moviedata/Movie_totaldata.csv ")
+Actor_df<-Extract_name(metadata$Actor,"Actor")
+Genre_df<-Extract_name(metadata$Genre,"Genre")
+Director_df<-Extract_name(metadata$Director,"Director")
 
+# Field Extraction
+select_metadata <- subset (metadata, select =c(NewTitle, Release_Date,Nationality_First,Distributor,Movie_Rate))
+select_metadata <- cbind(select_metadata,Genre_df)
+select_metadata <- cbind(select_metadata,Director_df)
+select_metadata <- cbind(select_metadata,Actor_df)
+
+a<-merge(total_data,select_metadata,by = c("NewTitle"))
+a<-a[order(a$National_Spectator_Number,decreasing = TRUE),]
+a<-merge(total_data,select_metadata,by = c("NewTitle","Release_Date"),all.x=TRUE)
+write.csv (a, "./moviedata/Movie_TinyData.csv ")
+
+# 배우 이름 사전 저장하기
+temp1<-strsplit(metadata$Actor,",")
+temp2<-factor(unlist(temp1))
+temp3<-as.data.frame(levels(temp2))
+names(temp3)<-c("Actor_Name")
+write.csv (temp3, "./moviedata/Actor_Name.csv ")
+
+# 감독 이름 사전 저장하기
+temp1<-strsplit(metadata$Director,",")
+temp2<-factor(unlist(temp1))
+temp3<-as.data.frame(levels(temp2))
+names(temp3)<-c("Director_Name")
+write.csv (temp3, "./moviedata/Director_Name.csv ")
+
+# 영화 이름 사전 저장하기
+temp1<-total_data$Movie_Title
+temp2<-factor(temp1)
+temp3<-as.data.frame(levels(temp2))
+names(temp3)<-c("Movie_Title")
+write.csv (temp3, "./moviedata/Movie_Title.csv ")
 
 #save(movie_data,file="movie_data_2014_09_22.RData")
 
